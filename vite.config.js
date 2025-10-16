@@ -10,5 +10,9 @@ export default defineConfig({
     hmr: {
       clientPort: 443,
     }
+  },
+  define: {
+    'import.meta.env.VITE_SUPABASE_URL': JSON.stringify(process.env.SUPABASE_URL),
+    'import.meta.env.VITE_SUPABASE_ANON_KEY': JSON.stringify(process.env.SUPABASE_ANON_KEY),
   }
 })
