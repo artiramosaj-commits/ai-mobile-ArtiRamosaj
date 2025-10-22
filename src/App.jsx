@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
+import { supabase } from './supabaseClient'
 
 function App() {
   const [messages, setMessages] = useState([
@@ -7,6 +8,25 @@ function App() {
   ])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
+  const [supabaseStatus, setSupabaseStatus] = useState('checking...')
+
+  useEffect(() => {
+    const checkConnection = async () => {
+      try {
+        const { data, error } = await supabase.from('_test').select('*').limit(1)
+        if (error && (error.code === '42P01' || error.message.includes('schema cache'))) {
+          setSupabaseStatus('✅ Connected')
+        } else if (error) {
+          setSupabaseStatus('⚠️ ' + error.message)
+        } else {
+          setSupabaseStatus('✅ Connected & Ready')
+        }
+      } catch (err) {
+        setSupabaseStatus('❌ Failed: ' + err.message)
+      }
+    }
+    checkConnection()
+  }, [])
 
   const handleSend = async () => {
     if (!input.trim()) return
@@ -46,6 +66,9 @@ function App() {
         <div className="header-content">
           <h1>🤖 AI Mobile Chat</h1>
           <p className="subtitle">Your AI Assistant</p>
+          <p style={{fontSize: '12px', opacity: 0.8, marginTop: '5px'}}>
+            Supabase: {supabaseStatus}
+          </p>
         </div>
       </header>
 
