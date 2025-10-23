@@ -1,7 +1,15 @@
 AI-log — Project: ai-mobile-ArtiRamosaj
 
-[2025-10-23 01:04] Tool: 
-Prompt: 
-OutputSummary: 
-FileSaved: 
+[2025-10-22 10:45] Prompt: Initialize a new Flutter project in the current directory.
+
+[2025-10-22 10:46] Prompt: Add a complete Flutter login system with Supabase authentication.
+
+[2025-10-22 10:47] Prompt: Add instructions for setting up Flutter login with Supabase.
+
+[2025-10-22 11:35] Prompt: Add a new Flutter application with login and sign-up functionality.
+
+[2025-10-22 11:37] Prompt: Add a tool to run the application locally for easier testing.
+
+
+
 
